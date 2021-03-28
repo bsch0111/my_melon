@@ -141,12 +141,12 @@ https://www.melon.com/mymusic/playlist/mymusicplaylistview_inform.htm?plylstSeq=
 #%%
 # titles = html_1_root.xpath("//a[@class='fc_gray']")
 # //a[@class='btn btn_icon_detail']/span
-titles = html_1_root.xpath("//a[@class='btn btn_icon_detail']/span")
 
 # %%
 for key, title in enumerate(titles) :
     print(key, title.text)
 # %%
+titles = html_1_root.xpath("//a[@class='btn btn_icon_detail']/span")
 artists = html_1_root.xpath("//div[@id='artistName']")
 #%%
 for key, artist in enumerate(artists) :
@@ -177,7 +177,7 @@ import sqlite3
 conn = sqlite3.connect('./music.db')
 db_cursor = conn.cursor() 
 #%%
-detail_playlist_url = ['111','222']
+detail_playlist_url = [('111',),('222',)]
 #%%
-db_cursor.execute('INSERT INTO PLAYLIST(playlist_url) VALUES(?)',detail_playlist_url)
+db_cursor.executemany('INSERT INTO PLAYLIST(playlist_url) VALUES(?)',detail_playlist_url)
 # %%
